@@ -1,6 +1,7 @@
 # NetScope
 
 ![macOS](https://img.shields.io/badge/platform-macOS-blue)
+![GitHub License](https://img.shields.io/github/license/CallumJRobertson/NetScope)
 ![GitHub release](https://img.shields.io/github/v/release/CallumJRobertson/NetScope?display_name=release)
 
 NetScope is a lightweight **macOS menu bar network monitor** designed to answer one question instantly:
