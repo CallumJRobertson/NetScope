@@ -1,85 +1,170 @@
 # NetScope
 
-NetScope is a lightweight macOS menu bar network monitor for answering one question quickly:
+![macOS](https://img.shields.io/badge/platform-macOS-blue)
+![License](https://img.shields.io/github/license/CallumJRobertson/NetScope)
+![Release](https://img.shields.io/github/v/release/CallumJRobertson/NetScope)
+
+NetScope is a lightweight **macOS menu bar network monitor** designed to answer one question instantly:
 
 **What is using my internet right now?**
 
-It provides real-time throughput, per-application usage, destination visibility, top consumers, and integrated speed tests.
+It shows real-time bandwidth usage, per-application traffic, connection destinations, top consumers, and integrated internet speed tests — all directly from your menu bar.
 
-## Highlights
+---
 
-- Menu bar live throughput indicator (`↓ / ↑`)
-- Popover with:
-  - total usage stats
-  - live bandwidth graph (1m, 5m, 30m)
-  - application bandwidth list (with icons)
-  - destination inspector (IP/port/protocol/state + hostname enrichment)
-  - top consumers summary
-  - speed test control and recent results
-- Full dashboard tabs:
-  - Overview
-  - Applications
-  - **Processes** (optional, advanced)
-  - Speed Tests
-  - Top Consumers
-  - Settings
-- Alerts for high bandwidth usage (threshold-based)
+# Download
 
-## Tech Stack
+Download the latest version:
 
-- SwiftUI + Charts
+➡️ https://github.com/CallumJRobertson/NetScope/releases
+
+### Install
+
+1. Download **NetScope.dmg**
+2. Open the DMG
+3. Drag **NetScope.app** into **Applications**
+4. Launch the app
+
+NetScope will appear in your **menu bar**.
+
+---
+
+# Features
+
+### Live Menu Bar Monitoring
+- Real-time upload/download indicator (`↓ / ↑`)
+- Instant visibility of current network activity
+
+### Bandwidth Dashboard
+Popover view includes:
+
+- Total network throughput
+- Live bandwidth graph (1m, 5m, 30m)
+- Per-application bandwidth usage
+- Application icons for quick identification
+- Destination inspector (IP, port, protocol, state)
+- Hostname enrichment via reverse DNS
+
+### Top Consumers
+Quickly see which apps are using the most bandwidth.
+
+Example:
+
+Chrome        ↓ 18 Mbps
+Docker        ↓ 7 Mbps
+Zoom          ↑ 3 Mbps
+
+### Integrated Speed Tests
+
+Run internet speed tests directly from the app.
+
+Shows:
+
+- Ping
+- Download speed
+- Upload speed
+- Recent test history
+
+### Alerts
+
+Optional alerts when apps exceed bandwidth thresholds.
+
+---
+
+# Dashboard Views
+
+NetScope includes a full dashboard with tabs:
+
+- **Overview** — total bandwidth + live graph
+- **Applications** — per-app network usage
+- **Processes** — optional advanced monitoring
+- **Speed Tests** — run and review tests
+- **Top Consumers** — heavy network users
+- **Settings**
+
+---
+
+# Requirements
+
+- **macOS 14 or newer**
+
+NetScope is designed for modern Apple Silicon and Intel Macs running recent macOS versions.
+
+---
+
+# Settings
+
+Configurable options include:
+
+- Refresh interval (1–5 seconds)
+- Number of visible applications
+- Include system processes
+- Enable/disable advanced **Processes** tab
+- Bandwidth alert thresholds
+- Speed test options
+
+---
+
+# How It Works
+
+NetScope collects network information using macOS system tools and APIs:
+
 - `nettop` parsing for per-process bandwidth and connections
 - `getifaddrs` fallback for total interface throughput
-- Reverse DNS resolution with cache
-- Cloudflare endpoint speed tests
+- Reverse DNS resolution with local caching
+- Cloudflare endpoints for speed tests
 
-## Requirements
+All monitoring happens **locally on your device**.
+
+---
+
+# Known Limitations
+
+- `nettop` output can vary slightly between macOS versions.
+- Some helper processes may appear instead of their parent apps in rare cases.
+- Reverse DNS hostname resolution depends on external PTR records.
+
+---
+
+# Development
+
+To build NetScope locally:
+
+1. Open `NetScope.xcodeproj`
+2. Select the **NetScope** scheme
+3. Build and run
+
+Requires:
 
 - macOS 14+
 - Xcode 15+
 
-## Run
+---
 
-1. Open [NetScope.xcodeproj](./NetScope.xcodeproj)
-2. Select `NetScope` scheme
-3. Build and run
-4. NetScope appears in the menu bar
+# Project Structure
 
-## Settings
-
-- Refresh interval (1-5s)
-- Visible app rows
-- Include system processes
-- Show `Processes` tab (advanced)
-- Alerts on/off + threshold (Mbps)
-
-## Known Limitations
-
-- `nettop` output quality can vary by macOS version and runtime conditions.
-- Some helper/networking processes may map imperfectly to parent apps in edge cases.
-- DNS reverse lookup depends on remote PTR records and may be missing.
-
-## Project Structure
-
-```text
 NetScope/
-  App/
-  NetworkMonitor/
-  SpeedTest/
-  UI/
-  Utilities/
+App/
+NetworkMonitor/
+SpeedTest/
+UI/
+Utilities/
 
 docs/
-  ARCHITECTURE.md
-  RELEASE_CHECKLIST.md
-```
+ARCHITECTURE.md
+RELEASE_CHECKLIST.md
 
-## Release Artifacts
+---
 
-- Changelog: [CHANGELOG.md](./CHANGELOG.md)
-- Architecture notes: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)
-- Release checklist: [docs/RELEASE_CHECKLIST.md](./docs/RELEASE_CHECKLIST.md)
+# Documentation
 
-## License
+- Architecture notes: `docs/ARCHITECTURE.md`
+- Release checklist: `docs/RELEASE_CHECKLIST.md`
+- Changelog: `CHANGELOG.md`
 
-MIT - see [LICENSE](./LICENSE)
+---
+
+# License
+
+MIT License  
+See [LICENSE](LICENSE) for details.
