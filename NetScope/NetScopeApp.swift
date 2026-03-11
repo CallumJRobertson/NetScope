@@ -1,17 +1,35 @@
-//
-//  NetScopeApp.swift
-//  NetScope
-//
-//  Created by Callum Robertson on 11/03/2026.
-//
-
 import SwiftUI
 
 @main
 struct NetScopeApp: App {
+    @StateObject private var store = NetScopeStore()
+
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        MenuBarExtra {
+            MenuBarContentView()
+                .environmentObject(store)
+                .onAppear {
+                    store.startMonitoringIfNeeded()
+                }
+        } label: {
+            MenuBarLabelView(downloadBps: store.totalDownloadBps, uploadBps: store.totalUploadBps)
+                .onAppear {
+                    store.startMonitoringIfNeeded()
+                }
+        }
+        .menuBarExtraStyle(.window)
+
+        Window("NetScope Dashboard", id: "dashboard") {
+            DashboardView()
+                .environmentObject(store)
+                .onAppear {
+                    store.startMonitoringIfNeeded()
+                }
+        }
+
+        Settings {
+            SettingsView()
+                .environmentObject(store)
         }
     }
 }
